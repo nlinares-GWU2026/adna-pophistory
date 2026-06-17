@@ -1,0 +1,20 @@
+# Raw and processed data (too large for GitHub)
+data/raw/
+results/bronze_age/*.geno
+results/bronze_age/*.snp
+results/bronze_age/*.ind
+results/americas/*.geno
+results/americas/*.snp
+results/americas/*.ind
+
+# EIGENSOFT output files
+*.evec
+*.eval
+*.log
+
+# Python cache
+__pychache__/
+*.pyc
+
+# conda
+*.egg-info/
