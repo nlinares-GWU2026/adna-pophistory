@@ -13,3 +13,7 @@ EIGENSOFT (smartpca), Python, conda
 
 ## Status 
 In progress
+
+## Installation notes
+- EIGENSOFT must be installed via `sudo apt install eigensoft` on Ubuntu/WSL — the bioconda build has a libgfortran compatibility issue with modern systems
+- All other dependencies are managed via conda: `conda env create -f environment.yml`
