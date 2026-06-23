@@ -16,14 +16,15 @@ Populations included:
 - Modern reference populations: Karitiana, Surui, Mayan, Pima
 - Han, Yoruba: East Asian ancestral proxy and African deep outgroup
 
-Output: results/americas/americas.ind (filtered EIGENSTRAT .ind file)
+Output: results/americas/americas.ind (full-length EIGENSTRAT .ind file,
+non-selected individuals marked "Ignore" for convertf subsetting)
 """
 
 import re
 import random
 from collections import defaultdict
 
-random.seed(42)  # reproducibility
+random.seed(42)
 
 INPUT_IND = "data/raw/v66.p1_HO.PUB.ind"
 OUTPUT_IND = "results/americas/americas.ind"
@@ -31,7 +32,6 @@ OUTPUT_IND = "results/americas/americas.ind"
 MAX_CALIFORNIA = 18
 MAX_MAYA = 10
 
-# Named landmark individuals: kept regardless of count (each is unique/important)
 NAMED_PATTERNS = [
     (r"^USA_AncientBeringian$", "Ancient_Beringian"),
     (r"^USA_Anzick_12700BP$", "Anzick"),
@@ -40,28 +40,25 @@ NAMED_PATTERNS = [
     (r"^USA_11000BP$", "Ancient_Beringian_11kBP"),
 ]
 
-# Subsampled ancient groups
 SUBSAMPLE_PATTERNS = [
     (r"^USA_California_\d+BP$", "Ancient_California", MAX_CALIFORNIA),
     (r".*Archaic.*Maya$|.*Maya$", "Ancient_Maya", MAX_MAYA),
 ]
 
-# Modern reference populations: exact label match
 MODERN_POPS = {"Karitiana", "Surui", "Mayan", "Pima", "Han", "Yoruba"}
 
-# Suffixes/substrings that flag outliers or non-standard variants -- exclude
 EXCLUDE_PATTERN = re.compile(r"-o[A-Za-z]*$|-\d+$|alt|Colonial")
 
 
-def is_excluded(label: str) -> bool:
+def is_excluded(label):
     return bool(EXCLUDE_PATTERN.search(label))
 
 
-def get_base_id(sample_id: str) -> str:
+def get_base_id(sample_id):
     return re.sub(r"\.(AG|SG|TW|DG|HO)(\.(AG|SG|TW|DG|HO))*$", "", sample_id)
 
 
-def quality_rank(sample_id: str) -> int:
+def quality_rank(sample_id):
     if sample_id.endswith(".DG"):
         return 0
     if sample_id.endswith(".AG.TW") or sample_id.endswith(".TW.AG"):
@@ -115,13 +112,11 @@ def main():
                     subsample_by_group[group_name].append((sample_id, sex, label))
                     break
 
-    # Deduplicate named individuals (e.g. USR1/USR2 could have .SG/.AG dupes)
     named_lines = dedupe(named_lines)
     print("Named landmark individuals kept:")
     for sample_id, sex, label in named_lines:
         print(f"  {sample_id}\t{label}")
 
-    # Deduplicate and subsample the bigger groups
     final_subsample_lines = []
     max_lookup = {name: max_n for _, name, max_n in SUBSAMPLE_PATTERNS}
     for group_name, entries in subsample_by_group.items():
@@ -137,12 +132,25 @@ def main():
         print(f"  {pop}: {count}")
 
     all_lines = named_lines + final_subsample_lines + modern_lines
+    selected_lookup = {sample_id: (sex, label) for sample_id, sex, label in all_lines}
 
-    with open(OUTPUT_IND, "w") as f:
-        for sample_id, sex, label in all_lines:
-            f.write(f"{sample_id}\t{sex}\t{label}\n")
+    written = 0
+    with open(INPUT_IND) as f_in, open(OUTPUT_IND, "w") as f_out:
+        for line in f_in:
+            parts = line.split()
+            if len(parts) != 3:
+                f_out.write(line)
+                continue
+            sample_id, sex, label = parts
+            if sample_id in selected_lookup:
+                sex, label = selected_lookup[sample_id]
+                f_out.write(f"{sample_id}\t{sex}\t{label}\n")
+                written += 1
+            else:
+                f_out.write(f"{sample_id}\t{sex}\tIgnore\n")
 
-    print(f"\nTotal individuals written to {OUTPUT_IND}: {len(all_lines)}")
+    print(f"\nFull-length .ind file written to {OUTPUT_IND}")
+    print(f"Selected individuals (real labels): {written}")
 
 
 if __name__ == "__main__":
