@@ -13,7 +13,8 @@ results/americas/*.ind
 *.log
 
 # Python cache
-__pychache__/
+__pycache__/
+gmon.out
 *.pyc
 
 # conda

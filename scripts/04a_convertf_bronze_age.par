@@ -1,0 +1,8 @@
+genotypename:    data/raw/v66.p1_HO.PUB.geno
+snpname:         data/raw/v66.p1_HO.PUB.snp
+indivname:       results/bronze_age/bronze_age.ind
+inputformat:	 PACKEDANCESTRYMAP
+outputformat:    EIGENSTRAT
+genooutfilename: results/bronze_age/bronze_age.geno
+snpoutfilename:  results/bronze_age/bronze_age.snp
+indoutfilename:  results/bronze_age/bronze_age.ind.out

@@ -125,13 +125,30 @@ def main():
         print(f"  {pop}: {count}")
 
     all_lines = final_ancient_lines + modern_lines
+    selected_lookup = {sample_id: (sex, label) for sample_id, sex, label in all_lines}
 
-    with open(OUTPUT_IND, "w") as f:
-        for sample_id, sex, label in all_lines:
-            f.write(f"{sample_id}\t{sex}\t{label}\n")
+    # Write a FULL-length .ind file (matching the original .geno header count),
+    # marking every non-selected individual as "Ignore" so convertf drops them
+    # from the output while still satisfying its row-count consistency check.
+    written = 0
+    with open(INPUT_IND) as f_in, open(OUTPUT_IND, "w") as f_out:
+        for line in f_in:
+            parts = line.split()
+            if len(parts) != 3:
+                f_out.write(line)
+                continue
+            sample_id, sex, label = parts
+            if sample_id in selected_lookup:
+                sex, label = selected_lookup[sample_id]
+                f_out.write(f"{sample_id}\t{sex}\t{label}\n")
+                written += 1
+            else:
+                f_out.write(f"{sample_id}\t{sex}\tIgnore\n")
 
-    print(f"\nTotal individuals written to {OUTPUT_IND}: {len(all_lines)}")
+    print(f"\nFull-length .ind file written to {OUTPUT_IND}")
+    print(f"Selected individuals (real labels): {written}")
 
 
 if __name__ == "__main__":
     main()
+
