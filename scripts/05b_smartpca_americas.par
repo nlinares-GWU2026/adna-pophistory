@@ -1,0 +1,9 @@
+genotypename:    results/americas/americas.geno
+snpname:         results/americas/americas.snp
+indivname:       results/americas/americas.ind.out
+evecoutname:     results/americas/americas.evec
+evaloutname:     results/americas/americas.eval
+poplistname:     scripts/americas_poplist.txt
+lsqproject:      YES
+numoutevec:      4
+numoutlieriter:  0
