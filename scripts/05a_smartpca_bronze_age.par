@@ -1,0 +1,9 @@
+genotypename:    results/bronze_age/bronze_age.geno
+snpname:         results/bronze_age/bronze_age.snp
+indivname:       results/bronze_age/bronze_age.ind.out
+evecoutname:     results/bronze_age/bronze_age.evec
+evaloutname:     results/bronze_age/bronze_age.eval
+poplistname:     scripts/bronze_age_poplist.txt
+lsqproject:      YES
+numoutevec:      4
+numoutlieriter:  0
