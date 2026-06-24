@@ -7,9 +7,8 @@ results/americas/*.geno
 results/americas/*.snp
 results/americas/*.ind
 
-# EIGENSOFT output files
-*.evec
-*.eval
+# EIGENSOFT output files — exclude logs everywhere, but allow .evec/.eval
+# in results/ since those are our actual small, meaningful PCA outputs
 *.log
 
 # Python cache

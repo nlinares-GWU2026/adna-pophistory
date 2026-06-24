@@ -1,0 +1,8 @@
+genotypename:    data/raw/v66.p1_HO.PUB.geno
+snpname:         data/raw/v66.p1_HO.PUB.snp
+indivname:       results/americas/americas.ind
+inputformat:     PACKEDANCESTRYMAP
+outputformat:    EIGENSTRAT
+genooutfilename: results/americas/americas.geno
+snpoutfilename:  results/americas/americas.snp
+indoutfilename:  results/americas/americas.ind.out
