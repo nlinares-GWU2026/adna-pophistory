@@ -42,7 +42,24 @@ I included five ancient population groups and three modern reference populations
 - **WHG (Western Hunter-Gatherers)** - pre-forming Mesolithic Europeans, including the well-known Loschbour and La Braña individuals, plus a cluster from the Iron Gates region of the Danube (Serbia/Romania)
 - **LBK (Linear Pottery Culture)** - Early European Farmers, mostly from Germany, Austria, Slovakia, and Hungary
 - **Turkey_N** - Anatolian Neolithic farmers, the ancestral source population for LBK
-- Modern reference: **French, Russian, Sardinian** 
+- Modern reference: **French, Russian, Sardinian**
+
+The PCA (PC1 vs PC2) showed a clear gradient that matches the well-established picture of European population history: Sardinians (who retain the highest genetic affinity to Early European Farmers of any modern European population) sit at one end, the true ancient farmers (Turkey_N and LBK) cluster near them, French sit in an intermediate position, and Yamnaya/Corded Ware/WHG/Russian cluster together at the other end. This lines up with the standard model, where modern Europeans are a mix of three ancestral components: hunter-gatherer, Anatolian farmer, and steppe pastoralist. 
+
+**Note** A small number of individuals labeled "Russian" in AADR exhibited a much more Siberian-shifted ancestry than the bulk of the Russian sample. This is likely because Russia spans an enormous geographic range, but it resulted in a few points being placed far outside the main cluster and would have compressed the rest of the plot if left in view. Rather than removing them from the analysis, I kept them in the data but set the plot's axis limits to focus on the dense, interpretable region. The same was true for one or two French individuals. I also excluded Yoruba (originally included as a deep outgroup) from the final plot, since it was not part of the population list used to build PCA axes and ended up landing in an uninformative spot in the middle of the plot, rather than off to the side, which could have been confusing to analyze. 
+
+### The Peopling of the Americas
+
+This case study utilized a robust dataset, as the v66.p1 AADR release incorporates several highly significant ancient individuals: 
+
+- **Anzick** (~12,700 years old) - a Clovis culture infant burial from Montana, one of the oldest and most complete ancient Native American genomes to be sequenced
+- **Kennewick Man** (~8,000 years old) - found in Washington State, the individual was the subject of a 20-year legal dispute under the National American Graves Protection and Repatriation Act (NAGPRA) between the U.S. Army Corps of Engineers and a coalition of Native American tribes seeking repatriation. Genetic analysis ultimately confirmed close affinity to modern Native American populations, which played a role in the case's resolution.
+- **USR1 and USR2** ("Ancient Beringian," ~11,500 years old) - two infants from the Upward Sun River site in Alaska, representing a distinct, deeply diverged lineage split off from the ancestors of all other Native Americans before that population moved further south
+- **AHUR_2064 and AHUR770c** (~11,000 years old) and the **Trail Creek** (~9,000 years old) - additional early Alaskan individuals
+- A subsampled series of **Ancient California** individuals spanning roughly 3,000-7,400 years ago, and a set of **Ancient Maya** individuals from Belize and Mexico spanning the Archaic period
+- Modern reference populations: **Han** (East Asian, serving as a proxy for the ancestral Asian source population), **Karitiana** and **Surui** (Amazonian Brazil), and **Pima** (Native American tribe indigenous to south-central Arizona)
+
+The PCA showed a striking and biologically meaningful pattern: USR1, USR2, and Trail Creek consistently sat apart from the main ancient cluster (which included Anzick, Kennewick, the AHUR individuals, Ancient California, and Ancient Maya), positioned partway between Han and that main cluster
 
 ## Interpretation
 *To be completed*
