@@ -59,7 +59,19 @@ This case study utilized a robust dataset, as the v66.p1 AADR release incorporat
 - A subsampled series of **Ancient California** individuals spanning roughly 3,000-7,400 years ago, and a set of **Ancient Maya** individuals from Belize and Mexico spanning the Archaic period
 - Modern reference populations: **Han** (East Asian, serving as a proxy for the ancestral Asian source population), **Karitiana** and **Surui** (Amazonian Brazil), and **Pima** (Native American tribe indigenous to south-central Arizona)
 
-The PCA showed a striking and biologically meaningful pattern: USR1, USR2, and Trail Creek consistently sat apart from the main ancient cluster (which included Anzick, Kennewick, the AHUR individuals, Ancient California, and Ancient Maya), positioned partway between Han and that main cluster
+The PCA showed a noticeable and biologically meaningful pattern: USR1, USR2, and Trail Creek consistently sat apart from the main ancient cluster (which included Anzick, Kennewick, the AHUR individuals, Ancient California, and Ancient Maya), positioned partway between Han and that main cluster. This aligns with the established 'Ancient Beringian' model, which demonstrates that this lineage diverged from the ancestors of other Native Americans at a deeper point in time. Consequently, they maintain a closer geographic and genetic affinity to the ancestral Asian source population. This divergence occurred before the primary founding population migrated further into the Americas, ultimately giving rise to subsequent lineages—ranging from the Clovis-era Anzick population to contemporary Native American groups across both continents. 
+
+The modern reference populations also showed a clear fan-like pattern radiating outward from the ancient cluster - Pima, Surui, and Karitiana formed their own distinct branch each. This is consistent with the **serial founder effect**: as people moved further from the original entry point into the Americas, each new population was founded by a smaller, increasingly distinct subset of the previous one. 
 
 ## Interpretation
-*To be completed*
+
+Both case studies reproduced major, well-established findings from the ancient DNA literature using nothing but raw downloaded genotype data and open-source tools — which is honestly the most satisfying part of doing a project like this. The Bronze Age PCA recovers the three-ancestry-component model of European population history that papers like Haak et al. (2015, *Nature*) and Lazaridis et al. (2014) established. The Americas PCA recovers the deep split between Ancient Beringians and the rest of the Native American lineage that was first described by Moreno-Mayar et al. (2018, *Nature*) from the original USR1 genome, which they showed diverged from the ancestors of all other Native Americans roughly 20,000 years ago. 
+
+Beyond the genetics, this project also revealed some of the messier and more realistic parts of working with ancient DNA. Population labels that span far more geographic and genetic diversity than their name suggests (like "Russian"), individuals duplicated across different sample-naming conventions, and the genuine ethical weight carried by certain individuals in this kind of data (like the Kennewick Man's history).  
+
+## Limitations
+
+- Both PCAs used a relatively small number of principal components (4) and focused on PC1/PC2, which captures the dominant structure but not every nuance of population relationships
+- Population labels in AADR sometimes span more genetic diversity than expected (e.g., "Russian), and a full analysis would ideally subdivide these further by region
+- Ancient individuals were randomly subsampled from larger AADR groups (e.g., only 25 of roughly 200+ available Yamnaya individuals were used) for plot readability; a more exhaustive analysis could use the full set
+- This analysis only used PCA; complementary methods like f3/f4-statistics or qpAdm (also part of the AdmixTools package used here) would allow more rigorous statistical testing of admixture proportions rather than just visual inspection of clustering
